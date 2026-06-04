@@ -1,0 +1,113 @@
+\chapter{Costos y Factibilidad Económica}
+
+\section{3.3.3. Factibilidad Económica}
+Dado que se trata de un proyecto académico y sin fines de lucro, se opta por una estrategia de desarrollo de bajo costo. 
+Se emplean herramientas y plataformas de uso libre o con planes académicos gratuitos, como GitHub para el control de versiones, MongoDB en su modalidad gratuita, y Google Drive para el almacenamiento de evidencias. 
+El desarrollo se realiza de forma local en los equipos personales de los integrantes, distribuyendo las tareas según los módulos definidos en el WBS. 
+Esta estrategia permite garantizar la continuidad del proyecto sin generar gastos adicionales a la institución.
+
+\section{Costos de desarrollo}
+El desarrollo se ejecuta dentro del marco del curso \textit{Ingeniería en Sistemas II} de la Universidad Nacional, 
+por lo que no existen costos asociados a contratación o licencias de software. 
+Todas las herramientas utilizadas son gratuitas y de libre acceso, y el despliegue de las pruebas se realiza en entornos locales. 
+De requerirse demostraciones institucionales, estas se efectuarán mediante el uso de cuentas académicas o servidores internos de la UNA.
+
+\section{Costos de capital humano}
+Las actividades técnicas están a cargo del equipo de desarrollo estudiantil, compuesto por:
+
+\begin{itemize}
+  \item \textbf{Francisco Mora Cabezas:} Desarrollo del backend del módulo \textit{Tiempos de Jornada}, diseño y definición del esquema correspondiente, integración visual y elaboración de la documentación general del proyecto.
+  \item \textbf{Ángel Segura Méndez:} Desarrollo del backend del módulo \textit{Evidencias SINAES}, modelado de su base de datos y elaboración de documentación técnica específica del módulo.
+\end{itemize}
+
+Cada integrante es responsable del ciclo completo de su módulo, incluyendo la lógica del backend, pruebas unitarias y coordinación para la integración futura entre ambos sistemas. 
+No se contemplan remuneraciones, dado que el trabajo forma parte del proceso académico dentro del curso. 
+La participación docente se limita a la supervisión, seguimiento metodológico y validación de los avances.
+
+
+\section{Cargos administrativos}
+El sistema está diseñado para operar completamente en línea o en entornos de prueba locales, eliminando la necesidad de documentación física. 
+Por ello, los costos administrativos son prácticamente nulos. 
+Se prevé únicamente el uso de materiales de apoyo o presentaciones digitales dentro del entorno académico.
+
+\section{Costos totales del proyecto}
+El proyecto puede desarrollarse sin generar costos monetarios directos. 
+No obstante, se estima un gasto potencial máximo de ₡25\,000 a ₡30\,000 (aproximadamente 40–50 USD) en caso de requerir:
+\begin{itemize}
+  \item Compra de un dominio institucional para futuras pruebas públicas.
+  \item Certificados SSL u otros servicios asociados al despliegue de pruebas.
+\end{itemize}
+Estos costos son opcionales y no forman parte de la presente etapa del proyecto.
+
+\section{Resumen consolidado de costos}
+
+A continuación se presenta una tabla consolidada que resume todos los costos asociados al desarrollo e implementación del Sistema de Gestión Integral Universitario:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|r|p{5cm}|}
+\hline
+\textbf{Categoría de Costo} & \textbf{Monto (₡)} & \textbf{Observaciones} \\
+\hline
+\hline
+\multicolumn{3}{|l|}{\textbf{I. Costos de Desarrollo}} \\
+\hline
+Herramientas y software & 0.00 & Uso de tecnologías open source \\
+Plataformas (GitHub, MongoDB Free, Vercel) & 0.00 & Planes académicos gratuitos \\
+IDE y entornos de desarrollo & 0.00 & VS Code, Node.js (gratuitos) \\
+\hline
+\textbf{Subtotal Desarrollo} & \textbf{0.00} & \\
+\hline
+\hline
+\multicolumn{3}{|l|}{\textbf{II. Costos de Capital Humano}} \\
+\hline
+Desarrollo técnico (576 horas) & 0.00 & Proyecto académico \\
+Supervisión docente & 0.00 & Dentro del curso ISII \\
+Reuniones y coordinación & 0.00 & Herramientas virtuales gratuitas \\
+\hline
+\textbf{Subtotal Capital Humano} & \textbf{0.00} & \\
+\hline
+\hline
+\multicolumn{3}{|l|}{\textbf{III. Costos Administrativos}} \\
+\hline
+Documentación física & 0.00 & Todo en formato digital \\
+Comunicaciones & 0.00 & Google Meet, Discord, WhatsApp \\
+Almacenamiento (Google Drive) & 0.00 & Cuentas académicas \\
+\hline
+\textbf{Subtotal Administrativo} & \textbf{0.00} & \\
+\hline
+\hline
+\multicolumn{3}{|l|}{\textbf{IV. Costos Opcionales (Futuros)}} \\
+\hline
+Dominio institucional (.cr) & 10,000 - 15,000 & Si se requiere despliegue público \\
+Certificado SSL & 5,000 - 10,000 & Si se requiere HTTPS personalizado \\
+Hosting demo (opcional) & 0 - 10,000 & Alternativa: usar Vercel gratuito \\
+\hline
+\textbf{Subtotal Opcional} & \textbf{15,000 - 35,000} & \\
+\hline
+\hline
+\textbf{TOTAL GARANTIZADO} & \textbf{₡0.00} & \textbf{Costo real del proyecto} \\
+\textbf{TOTAL MÁXIMO ESTIMADO} & \textbf{₡35,000} & \textbf{Solo si se requieren servicios adicionales} \\
+\hline
+\end{tabular}
+\caption{Consolidado General de Costos del Proyecto}
+\label{tab:costos_consolidado}
+\end{table}
+
+\textbf{Nota importante sobre costo-beneficio:} 
+
+Aunque el costo directo del proyecto es de ₡0.00, el valor generado es significativo. La Universidad Nacional actualmente invierte aproximadamente ₡58 millones anuales en gestión manual de evidencias SINAES (según estimaciones institucionales de horas-persona dedicadas a búsqueda, organización y auditoría de documentos). 
+
+Adicionalmente, el módulo de Tiempos de Jornada optimiza un proceso que actualmente consume entre 40-60 horas por ciclo académico en cálculos manuales, revisiones y correcciones de asignaciones docentes. La automatización de este proceso representa un ahorro estimado de ₡2.4 millones anuales en productividad administrativa.
+
+Por lo tanto, la relación costo-beneficio es extraordinariamente favorable: **inversión de ₡0.00 con retorno anual estimado de ₡60+ millones en ahorro de tiempo y optimización de recursos humanos**.
+
+\section{Conclusiones de la factibilidad económica}
+El proyecto es económicamente viable y presenta una relación costo-beneficio excepcional. 
+Aprovecha herramientas gratuitas de código abierto, no requiere inversión inicial y mantiene un costo de mantenimiento prácticamente nulo. 
+Al estar alineado con los principios de software libre y educación abierta, contribuye al fortalecimiento institucional sin demandar recursos financieros adicionales. 
+
+El único costo potencial (₡15,000-₡35,000) surgiría únicamente si la institución decidiera en el futuro implementar un despliegue público con dominio personalizado, certificado SSL profesional y servicios premium de hosting. Sin embargo, este gasto sería completamente opcional, ya que el sistema puede operar indefinidamente con las herramientas gratuitas actuales.
+
+En términos de costo-beneficio, la relación es altamente favorable: el impacto esperado —automatización, transparencia, eficiencia administrativa y ahorro de ₡60+ millones anuales— se logra con una inversión real de cero colones.
++++

@@ -1,0 +1,492 @@
+\chapter{Desarrollo}
+
+\section{Introducción}
+Este capítulo describe el proceso de desarrollo del \textbf{Sistema de Gestión Integral Universitario}, el cual contempla dos módulos principales: Gestión de Evidencias SINAES y Gestión de Tiempos de Jornada. El desarrollo se realiza de forma iterativa siguiendo la metodología Scrum, con entregas incrementales en cada sprint.
+
+\section{Gestión de Reuniones y Documentación}
+
+\subsection{Formato de Minutas de Reunión}
+Durante el desarrollo del proyecto, se implementó un riguroso proceso de documentación de reuniones mediante minutas estructuradas, siguiendo el formato establecido en \hyperref[anexo:formato_minutas]{Anexo 6: Formato de minutas de reunión}. Estas minutas constituyeron una herramienta fundamental para:
+
+\begin{itemize}
+    \item Documentar decisiones técnicas y de negocio tomadas durante el desarrollo.
+    \item Registrar acuerdos con los diferentes actores del proyecto.
+    \item Establecer compromisos y fechas de entrega para cada sprint.
+    \item Identificar problemas potenciales de manera temprana.
+    \item Mantener la trazabilidad de los cambios solicitados.
+\end{itemize}
+
+Cada minuta siguió una estructura estandarizada que incluye:
+\begin{enumerate}
+    \item Información general (fecha, hora, lugar, participantes).
+    \item Agenda de la reunión.
+    \item Temas discutidos.
+    \item Acuerdos alcanzados.
+    \item Compromisos adquiridos.
+    \item Próximos pasos.
+    \item Firmas de los participantes.
+\end{enumerate}
+
+Este formato permitió mantener una comunicación efectiva entre el equipo de desarrollo y los usuarios finales del sistema (representantes de la UNA), asegurando que todas las partes interesadas estuvieran alineadas con los objetivos del proyecto.
+
+\subsection{Gestión de Cambios}
+Un aspecto crítico del desarrollo fue la implementación de un proceso formal de gestión de cambios, documentado a través de un formulario específico (ver \hyperref[anexo:formulario_gestion_de_cambios]{Anexo 12: Formulario gestión de cambios}). Este proceso permitió manejar de manera efectiva las modificaciones solicitadas durante el desarrollo, garantizando que:
+
+\begin{itemize}
+    \item Los cambios fueran evaluados en términos de impacto en alcance, tiempo y recursos.
+    \item Se mantuviera la integridad del sistema a lo largo del desarrollo.
+    \item Se priorizaran los cambios según su importancia y urgencia.
+    \item Se documentaran adecuadamente las modificaciones realizadas.
+    \item Se mantuviera la trazabilidad entre los requisitos originales y los cambios implementados.
+\end{itemize}
+
+\subsubsection{Actores Clave en la Gestión de Cambios}
+Para asegurar un proceso de gestión de cambios efectivo y alineado con los objetivos del proyecto, se identificaron los siguientes actores clave cuya participación fue fundamental:
+
+\begin{itemize}
+    \item \textbf{Estudiantes (Equipo de Desarrollo):}
+        \begin{itemize}
+            \item Francisco Mora Cabezas
+            \item Ángel Segura Méndez
+        \end{itemize}
+    \item \textbf{Profesor:} Saray Castro Mora
+    \item \textbf{Cliente (Dueño del Producto):} Josías Chávez Murillo
+\end{itemize}
+
+Un principio fundamental establecido fue que para la aprobación de cualquier cambio se requería, como mínimo, el consenso entre los estudiantes y el profesor. Este requisito garantizó que todos los cambios fueran debidamente evaluados desde perspectivas académicas y técnicas antes de su implementación.
+
+El proceso de gestión de cambios implementado constó de las siguientes etapas:
+
+\begin{enumerate}
+    \item \textbf{Solicitud de cambio:} Documentación formal de la modificación requerida, que podía ser iniciada por cualquiera de los actores clave.
+    \item \textbf{Análisis de impacto:} Evaluación técnica y de recursos necesarios, realizada por los estudiantes con supervisión del profesor.
+    \item \textbf{Aprobación:} Decisión basada en el análisis previo, requiriendo como mínimo el acuerdo entre estudiantes y profesor, e idealmente incluyendo al cliente.
+    \item \textbf{Implementación:} Desarrollo e integración del cambio por parte del equipo de estudiantes.
+    \item \textbf{Verificación:} Pruebas para asegurar que el cambio cumple los requisitos, con participación de todos los actores relevantes.
+    \item \textbf{Documentación:} Actualización de la documentación del sistema y registro formal del cambio implementado.
+\end{enumerate}
+
+Esta metodología de gestión de cambios fue particularmente valiosa considerando la naturaleza iterativa del desarrollo, permitiendo incorporar mejoras y ajustes sin comprometer la calidad del producto final ni los plazos establecidos en el cronograma.
+
+\section{Arquitectura Técnica}
+
+El sistema se está desarrollando siguiendo una arquitectura moderna de tres capas, aplicando las mejores prácticas de la industria del software.
+
+\subsection{Stack Tecnológico}
+
+La selección del stack tecnológico se realizó en base a criterios de escalabilidad, mantenibilidad, compatibilidad con tecnologías actuales y disponibilidad de documentación:
+
+\begin{itemize}
+    \item \textbf{Frontend:} Next.js 15.1.0 con React 19.0.0, utilizando el patrón App Router para enrutamiento del lado del servidor.
+    \item \textbf{Backend:} NestJS 10.4.19, framework de Node.js que implementa arquitectura hexagonal y principios SOLID.
+    \item \textbf{Base de Datos:} MongoDB con Prisma ORM 6.10.1, aprovechando la flexibilidad de bases de datos NoSQL para esquemas evolutivos.
+    \item \textbf{Autenticación:} JWT (JSON Web Tokens) con Passport.js, incluyendo integración con Google OAuth2.
+    \item \textbf{UI/UX:} shadcn/ui + Tailwind CSS 3.4.16 para interfaces responsivas y accesibles.
+    \item \textbf{Gestión de Estado:} Zustand 4.5.4 para state management del lado del cliente.
+    \item \textbf{Validación:} Zod 3.24.2 + class-validator para validación de datos tanto en frontend como backend.
+    \item \textbf{Documentación API:} Swagger/OpenAPI automático integrado en NestJS.
+\end{itemize}
+
+\subsection{Arquitectura Monorepo}
+
+El proyecto se organiza como un monorepo gestionado por pnpm workspaces y Turbo, lo que permite:
+
+\begin{itemize}
+    \item Compartir código común entre frontend y backend (tipos TypeScript, validaciones).
+    \item Gestionar dependencias de manera centralizada.
+    \item Ejecutar builds incrementales y paralelos.
+    \item Mantener consistencia en estándares de código mediante ESLint compartido.
+\end{itemize}
+
+\textbf{Estructura del monorepo:}
+
+\begin{quote}
+\texttt{Gestion\_Calidad/}\\
+\hspace*{1em}\texttt{apps/}\\
+\hspace*{2em}\texttt{backend/} \hspace{2em}\textit{\# API NestJS}\\
+\hspace*{2em}\texttt{frontend/} \hspace{1.5em}\textit{\# App Next.js}\\
+\hspace*{2em}\texttt{docs/} \hspace{2.8em}\textit{\# Documentación Docusaurus}\\
+\hspace*{1em}\texttt{packages/}\\
+\hspace*{2em}\texttt{database/} \hspace{1.5em}\textit{\# Prisma schemas compartidos}\\
+\hspace*{2em}\texttt{ui/} \hspace{3.3em}\textit{\# Componentes React reutilizables}\\
+\hspace*{2em}\texttt{eslint-config/} \hspace{0.3em}\textit{\# Configuraciones de linting}\\
+\hspace*{2em}\texttt{typescript-config/} \textit{\# tsconfig base}
+\end{quote}
+
+\section{Módulo de Evidencias SINAES}
+
+\subsection{Descripción y Cliente}
+
+El módulo de Gestión de Evidencias SINAES tiene como cliente principal al Lic. Josías Chávez Murillo. Este módulo busca centralizar y organizar toda la documentación probatoria requerida por el Sistema Nacional de Acreditación de la Educación Superior (SINAES).
+
+\subsection{Componentes Principales}
+
+El módulo contempla las siguientes entidades y funcionalidades:
+
+\begin{itemize}
+    \item \textbf{Gestión de Dimensiones SINAES:} Administración de las dimensiones y componentes definidos por SINAES.
+    \item \textbf{Tipos de Documentos:} Categorización de documentos según estándares institucionales.
+    \item \textbf{Carga de Evidencias:} Subida y almacenamiento de documentos probatorios en Google Drive.
+    \item \textbf{Consulta de Evidencias:} Búsqueda avanzada de documentos por dimensión, componente, criterio y año.
+    \item \textbf{Definición de Criterios:} Establecimiento de criterios de cumplimiento para cada componente SINAES.
+    \item \textbf{Auditoría:} Registro de cambios y modificaciones a documentos.
+\end{itemize}
+
+\subsection{Estructura de Backend}
+
+El backend del módulo SINAES incluye los siguientes módulos NestJS:
+
+\begin{itemize}
+    \item \texttt{DimensionsModule}: CRUD de dimensiones SINAES.
+    \item \texttt{ComponentsModule}: Gestión de componentes por dimensión.
+    \item \texttt{CriteriaModule}: Definición y administración de criterios de evaluación.
+    \item \texttt{EvidencesModule}: Carga, almacenamiento y consulta de evidencias documentales.
+    \item \texttt{DocumentTypesModule}: Categorización de tipos de documentos.
+    \item \texttt{GoogleDriveModule}: Integración con API de Google Drive para almacenamiento.
+\end{itemize}
+
+\subsection{Interfaz de Usuario}
+
+La interfaz del módulo SINAES proporciona vistas para:
+
+\begin{itemize}
+    \item Dashboard con resumen de evidencias por dimensión.
+    \item Formulario de carga de documentos con validación.
+    \item Buscador avanzado con filtros múltiples.
+    \item Vista de árbol jerárquico (Dimensión > Componente > Criterio > Evidencias).
+    \item Gestión de permisos por rol (administrador, coordinador, docente).
+\end{itemize}
+
+\section{Módulo de Tiempos de Jornada}
+
+\subsection{Descripción y Cliente}
+
+El módulo de Gestión de Tiempos de Jornada tiene como cliente principal al Lic. Erick Madrigal. Este módulo automatiza el cálculo y distribución de las cargas académicas docentes según los tiempos de jornada establecidos por la institución.
+
+\subsection{Componentes Principales}
+
+El módulo contempla las siguientes funcionalidades:
+
+\begin{itemize}
+    \item \textbf{Configuración de Rangos:} Definición de rangos de horas para cada tipo de jornada (1/4, 1/2, 3/4, tiempo completo).
+    \item \textbf{Presupuesto Anual:} Asignación del presupuesto total de tiempos de jornada por año académico.
+    \item \textbf{Distribución por Campus:} Asignación de tiempos de jornada a diferentes sedes universitarias.
+    \item \textbf{Asignaciones Docentes:} Registro de cargas académicas individuales (cursos, proyectos, tareas administrativas).
+    \item \textbf{Proyectos Institucionales:} Gestión de proyectos que requieren tiempo de jornada docente.
+    \item \textbf{Proveedores Externos:} Administración de convenios que aportan tiempos adicionales.
+\end{itemize}
+
+\subsection{Modelo de Datos}
+
+El modelo de datos incluye seis entidades principales en MongoDB:
+
+\begin{enumerate}
+    \item \textbf{JourneyTimeCalculationConfig:} Almacena los rangos de horas y valores para cada tipo de jornada (1/4, 1/2, 3/4, Tiempo Completo).
+    \item \textbf{AnnualJourneyTimeAllocation:} Gestiona el presupuesto anual de tiempos de jornada por sede.
+    \item \textbf{CampusJourneyTimeAllocation:} Distribuye los tiempos entre sedes específicas, calculando automáticamente tiempos disponibles.
+    \item \textbf{ProfessorAssignment:} Registra asignaciones individuales de profesores a cursos, proyectos o tareas administrativas.
+    \item \textbf{InstitutionalProject:} Modela proyectos institucionales que consumen tiempos de jornada.
+    \item \textbf{ExternalProvider:} Gestiona proveedores externos (convenios) que aportan tiempos adicionales.
+\end{enumerate}
+
+El modelo completo se encuentra documentado en el \hyperref[anexo:dicc_jornada]{Anexo 15: Diccionario de Datos --- Tiempos de Jornada} y \hyperref[anexo:modelo_no_relacional]{Anexo 9: Modelo No Relacional}.
+
+\subsection{Estructura de Backend}
+
+El backend del módulo de Tiempos de Jornada contempla los siguientes módulos NestJS:
+
+\begin{itemize}
+    \item \texttt{JourneyTimeConfigsModule}: Gestión de configuraciones de rangos de horas para cada tipo de jornada.
+    \item \texttt{AnnualJourneyTimeAllocationsModule}: Administración del presupuesto anual de tiempos de jornada.
+    \item \texttt{CampusJourneyTimeAllocationsModule}: Distribución de tiempos entre campus con cálculo automático de disponibilidad.
+    \item \texttt{ProfessorAssignmentsModule}: Registro de asignaciones docentes individuales.
+    \item \texttt{ExternalProvidersModule}: Gestión de proveedores externos y convenios.
+    \item \texttt{InstitutionalProjectsModule}: Administración de proyectos institucionales.
+\end{itemize}
+
+\subsubsection{Lógica de Cálculo}
+
+El sistema implementa cálculo automático de tiempos de jornada según las horas trabajadas. La disponibilidad de tiempos en cada campus se calcula mediante la fórmula:
+
+\begin{center}
+\texttt{disponible = asignado + adicional - consumido}
+\end{center}
+
+Esto permite mantener control automático de la disponibilidad de recursos en cada campus.
+
+\subsection{Interfaz de Usuario}
+
+La interfaz del módulo de Tiempos de Jornada incluye:
+
+\begin{itemize}
+    \item Dashboard con resumen de distribución de tiempos por campus.
+    \item Configuración de rangos de jornada (1/4, 1/2, 3/4, tiempo completo).
+    \item Calculadora interactiva de tipos de jornada según horas trabajadas.
+    \item Gestión de asignaciones docentes individuales.
+    \item Registro de proyectos institucionales y proveedores externos.
+    \item Reportes de consumo y disponibilidad por campus y ciclo académico.
+\end{itemize}
+
+\section{Integración entre Módulos}
+
+Ambos módulos comparten infraestructura común:
+
+\begin{itemize}
+    \item \textbf{Autenticación:} Sistema unificado con JWT y Google OAuth2.
+    \item \textbf{Base de Datos:} MongoDB compartida con esquemas separados por módulo.
+    \item \textbf{Gestión de Roles:} Permisos diferenciados (administrador, coordinador, docente).
+    \item \textbf{Auditoría:} Registro centralizado de cambios para ambos módulos.
+    \item \textbf{API Gateway:} Punto único de entrada para servicios backend.
+\end{itemize}
+
+\section{Estado Actual del Desarrollo}
+
+El desarrollo se encuentra en progreso continuo, con entregas incrementales en cada sprint. Las funcionalidades base de ambos módulos están implementadas, y se continúa trabajando en:
+
+\begin{itemize}
+    \item Validaciones avanzadas en formularios.
+    \item Mejoras en búsquedas y filtros.
+    \item Reportes de cumplimiento y auditoría.
+    \item Optimización de rendimiento.
+    \item Documentación técnica y de usuario.
+\end{itemize}
+
+\section{Implementación y Despliegue}
+
+\subsection{Plan de Implementación del Sistema}
+
+La implementación del \textbf{Sistema de Gestión Integral Universitario} se planificó en función de los sprints definidos en el cronograma del proyecto, siguiendo un enfoque incremental que permitió integrar los módulos de Evidencias SINAES y Tiempos de Jornada de manera progresiva sobre una infraestructura común. El plan contempla las siguientes etapas:
+
+\begin{enumerate}
+    \item \textbf{Preparación del entorno:} Configuración del monorepo (pnpm + Turbo), provisión de bases de datos MongoDB, generación de credenciales OAuth2 de Google Drive y configuración de variables de entorno por ambiente.
+    \item \textbf{Construcción incremental:} Desarrollo y entrega por sprints, integrando primero la base de autenticación y seguridad, luego el módulo de Evidencias SINAES y finalmente el módulo de Tiempos de Jornada.
+    \item \textbf{Integración continua:} Cada cambio se valida con linters (ESLint), formateo (Prettier), verificación de tipos (TypeScript) y pruebas automatizadas (Jest) antes de fusionarse a la rama principal.
+    \item \textbf{Despliegue a ambientes:} Promoción controlada desde el ambiente de desarrollo local hacia el ambiente de pruebas (QA) y, posteriormente, al ambiente de producción alojado en el servidor Hetzner.
+    \item \textbf{Verificación post-despliegue:} Revisión de bitácoras de los contenedores, pruebas de humo sobre los endpoints críticos y validación funcional de los flujos principales.
+\end{enumerate}
+
+\subsection{Estrategia de Despliegue y Ambientes Definidos}
+
+El sistema se despliega bajo una arquitectura contenedorizada con Docker y orquestada mediante \texttt{docker-compose}. Se utiliza Traefik 2.11 como proxy reverso, con resolución automática de certificados TLS mediante Let's Encrypt (HTTP-01 challenge) y cabeceras de seguridad gestionadas por archivos dinámicos de configuración.
+
+\subsubsection{Ambiente de Desarrollo}
+\begin{itemize}
+    \item \textbf{Ubicación:} Estaciones de trabajo locales del equipo de desarrollo.
+    \item \textbf{Ejecución:} \texttt{pnpm run dev} levanta backend (NestJS) y frontend (Next.js) en modo hot-reload, junto con el servidor de documentación Docusaurus.
+    \item \textbf{Base de datos:} Instancia MongoDB local (o cluster de desarrollo) gestionada con Prisma.
+    \item \textbf{Propósito:} Implementación y prueba de funcionalidades, depuración y validación temprana del comportamiento.
+\end{itemize}
+
+\subsubsection{Ambiente de Pruebas (QA)}
+\begin{itemize}
+    \item \textbf{Ubicación:} Construcción Docker equivalente a producción, ejecutada en una rama o instancia separada.
+    \item \textbf{Datos:} Conjunto controlado de datos de prueba que replica escenarios reales sin comprometer información sensible.
+    \item \textbf{Propósito:} Validación funcional, pruebas de integración, pruebas de regresión y revisión por parte del cliente antes de cada liberación.
+\end{itemize}
+
+\subsubsection{Ambiente de Producción}
+\begin{itemize}
+    \item \textbf{Infraestructura:} Servidor dedicado en Hetzner, red Docker aislada \texttt{gcalidad-network} (\texttt{172.30.0.0/24}).
+    \item \textbf{Servicios:} Contenedores \texttt{agr-frontend} (Next.js), \texttt{agr-backend} (NestJS) y \texttt{traefik} actuando como proxy y terminador TLS.
+    \item \textbf{Dominios:} Frontend expuesto en \texttt{gestion-calidad.arayaroma.software} y API en \texttt{api-gestion-calidad.arayaroma.software}, con redirección automática HTTP $\rightarrow$ HTTPS.
+    \item \textbf{Almacenamiento de archivos:} Google Drive como repositorio documental para las evidencias SINAES, mediante una cuenta de servicio con acceso restringido.
+\end{itemize}
+
+\subsection{Procedimiento de Instalación y Configuración}
+
+El despliegue automatizado se realiza mediante el script \texttt{deploy-hetzner.sh}, que sincroniza el código fuente con el servidor remoto y reconstruye los contenedores. El procedimiento general es el siguiente:
+
+\begin{enumerate}
+    \item \textbf{Requisitos previos:} Node.js $\geq$ 18.x, pnpm $\geq$ 8.x, Docker y Docker Compose instalados en el servidor.
+    \item \textbf{Clonado y configuración:} Obtención del repositorio y creación de los archivos \texttt{.env}, \texttt{apps/backend/.env.production} y \texttt{apps/frontend/.env.production} con las credenciales correspondientes (cadena de conexión a MongoDB, secretos JWT, credenciales Google OAuth2, dominios públicos).
+    \item \textbf{Sincronización:} \texttt{./deploy-hetzner.sh all} ejecuta \texttt{rsync} excluyendo \texttt{node\_modules}, \texttt{.next}, \texttt{dist}, \texttt{.git} y archivos sensibles locales.
+    \item \textbf{Construcción de imágenes:} \texttt{docker compose build --no-cache} reconstruye las imágenes de \texttt{frontend} y \texttt{backend}.
+    \item \textbf{Levantamiento de servicios:} \texttt{docker compose up -d} inicia los contenedores con sus etiquetas Traefik para enrutamiento y certificados.
+    \item \textbf{Verificación:} Inspección de \texttt{docker compose ps} y de las bitácoras (\texttt{docker logs agr-frontend}, \texttt{docker logs agr-backend}) para confirmar el inicio correcto.
+    \item \textbf{Migración de esquemas:} Ejecución de \texttt{pnpm run prisma} para generar y aplicar los esquemas de Prisma sobre la base de datos.
+\end{enumerate}
+
+\subsection{Plan de Respaldos y Recuperación}
+
+Dado que el sistema gestiona información crítica para la acreditación SINAES y la planificación académica, se define una estrategia de respaldos en dos planos:
+
+\begin{itemize}
+    \item \textbf{Base de datos (MongoDB):} Respaldos automatizados mediante \texttt{mongodump} con periodicidad diaria (incrementales) y semanal (completos), almacenados de forma cifrada y conservados por al menos 30 días. Las restauraciones se prueban periódicamente sobre un ambiente aislado para validar la integridad de los volcados.
+    \item \textbf{Documentos probatorios (Google Drive):} La propia plataforma de Google Drive provee versionado y papelera con periodo de retención. Adicionalmente, se documenta una jerarquía de carpetas controlada por el módulo \texttt{GoogleDriveFolders}, lo que permite reconstruir la estructura ante eliminaciones accidentales.
+    \item \textbf{Configuración e infraestructura:} El \texttt{docker-compose.yml}, los archivos de Traefik (\texttt{headers.yml}, \texttt{redirect.yml}, \texttt{tls.yml}) y los certificados de Let's Encrypt (volumen \texttt{traefik\_certs}) se versionan o respaldan para permitir la reconstrucción rápida del entorno.
+    \item \textbf{Procedimiento de recuperación:} En caso de incidente se restaura primero la infraestructura base (servidor, red Docker, Traefik), luego la base de datos a partir del último respaldo válido y, finalmente, se redespliega la aplicación mediante \texttt{deploy-hetzner.sh}.
+\end{itemize}
+
+\subsection{Capacitación al Usuario Final y Entrega de Manuales}
+
+La estrategia de capacitación se concibió en dos frentes, alineados con los perfiles de usuario del sistema:
+
+\begin{itemize}
+    \item \textbf{Capacitación funcional:} Sesiones dirigidas a los usuarios clave (Lic. Josías Chávez Murillo para el módulo SINAES y Lic. Erick Madrigal para el módulo de Tiempos de Jornada), cubriendo los flujos de carga de evidencias, configuración de rangos de jornada, registro de asignaciones docentes y consulta de reportes.
+    \item \textbf{Material entregable:} Documentación funcional y técnica generada con Docusaurus (\texttt{apps/docs}), accesible vía \texttt{pnpm --filter @una-gc/docs start} en \texttt{http://localhost:5000}, complementada con la documentación API auto-generada por Swagger/OpenAPI desde el backend NestJS.
+    \item \textbf{Manuales:} Manual de usuario por módulo, manual de administrador (gestión de roles y permisos) y manual técnico de despliegue, todos versionados dentro del propio monorepo.
+\end{itemize}
+
+\section{Aceptación por Parte del Usuario}
+
+\subsection{Plan de Pruebas de Aceptación del Usuario (UAT)}
+
+El plan de UAT se diseñó para validar, en condiciones reales de uso, que el sistema cumple con los requerimientos definidos en el SRS (\hyperref[anexo:documento_srs]{Anexo 8}). Contempla:
+
+\begin{itemize}
+    \item \textbf{Alcance:} Validación de los flujos críticos de ambos módulos: autenticación con Google OAuth2, carga y búsqueda de evidencias SINAES, configuración de rangos de jornada, registro de asignaciones docentes y generación de reportes.
+    \item \textbf{Criterios de aceptación:} Cumplimiento de los requerimientos funcionales del SRS, ausencia de defectos bloqueantes, tiempos de respuesta razonables en operaciones cotidianas y consistencia entre la información mostrada en la interfaz y la almacenada en MongoDB / Google Drive.
+    \item \textbf{Roles participantes:} Cliente / Dueño del Producto (Lic. Josías Chávez Murillo y Lic. Erick Madrigal), Profesor responsable (Saray Castro Mora) y Equipo de Desarrollo.
+    \item \textbf{Casos de prueba:} Conjunto derivado de las historias de usuario, ejecutados sobre el ambiente de QA con datos de prueba representativos.
+\end{itemize}
+
+\subsection{Ejecución y Evidencias de las Pruebas}
+
+La ejecución de las pruebas de aceptación se realizó en sesiones conjuntas con los clientes sobre el ambiente desplegado. Las evidencias técnicas se recopilan en el \hyperref[anexo:desarrollo]{Anexo 13: Desarrollo}, que contiene capturas de las vistas funcionales del sistema. Adicionalmente, el repositorio cuenta con una suite de pruebas automatizadas (Jest) que respalda la validación funcional ejecutada por el usuario, con reportes de cobertura disponibles vía \texttt{pnpm --filter @una-gc/backend test:cov}.
+
+\subsection{Bitácora de Hallazgos y Correcciones Aplicadas}
+
+Durante el desarrollo se mantuvo un proceso continuo de auditoría técnica del módulo SINAES, formalizado en el documento \texttt{SINAES\_AUDIT.md} dentro del repositorio. Esta bitácora documenta:
+
+\begin{itemize}
+    \item Inconsistencias críticas (duplicaciones de componentes, código stub en producción).
+    \item Errores de manejo de errores y casos borde (validaciones faltantes, \texttt{catch} silenciosos).
+    \item Recomendaciones de remediación con su correspondiente prioridad.
+\end{itemize}
+
+Las correcciones se gestionaron a través del proceso formal de gestión de cambios descrito al inicio del capítulo, dejando registro en commits del repositorio y en el plan de remediación \texttt{SINAES\_FIX\_PLAN.md}.
+
+\subsection{Acta de Aceptación}
+
+El acta o carta formal de aceptación firmada por el usuario se incorpora como anexo del documento una vez completada la ejecución de la UAT en presencia del cliente y del profesor responsable (ver \hyperref[anexo:carpeta_firmas]{Anexo 12: Carpeta de firmas}).
+
+\section{Desafíos}
+
+\subsection{Desafíos Técnicos Enfrentados}
+
+Durante el desarrollo se enfrentaron varios desafíos relevantes:
+
+\begin{itemize}
+    \item \textbf{Integración con Google Drive:} Manejo de cuotas de la API, autenticación OAuth2 con cuenta de servicio, sincronización entre la jerarquía documental en Drive y la base de datos, y construcción de un mecanismo de verificación de consistencia (\texttt{DriveSyncCheckerService}).
+    \item \textbf{Modelado de la jerarquía SINAES:} Representación en MongoDB de una estructura de 5 niveles (Dimensiones $\rightarrow$ Componentes $\rightarrow$ Criterios $\rightarrow$ Estándares/Evidencias Directas $\rightarrow$ Evidencias de Calidad) preservando integridad referencial sobre un motor NoSQL.
+    \item \textbf{Cálculo de tiempos de jornada:} Implementación de la fórmula \texttt{disponible = asignado + adicional - consumido} con consistencia transaccional sobre múltiples entidades (configuración, presupuesto anual, distribución por campus, asignaciones docentes).
+    \item \textbf{Monorepo multi-app:} Coordinación de dependencias compartidas, builds incrementales y configuración unificada de ESLint/TypeScript entre backend, frontend, paquetes UI y documentación.
+    \item \textbf{Despliegue contenedorizado:} Configuración de Traefik con resolución automática de certificados TLS, cabeceras de seguridad y enrutamiento dual HTTP/HTTPS para frontend y backend bajo dominios distintos.
+\end{itemize}
+
+\subsection{Riesgos Materializados y Acciones de Mitigación}
+
+\begin{itemize}
+    \item \textbf{Inconsistencias en código de producción:} Se detectaron componentes de depuración (\texttt{scroll-debug}, \texttt{config-debug}) y duplicaciones de archivos críticos en el módulo SINAES. \textbf{Mitigación:} formalización de la auditoría en \texttt{SINAES\_AUDIT.md}, definición del plan de remediación en \texttt{SINAES\_FIX\_PLAN.md} y aislamiento de utilidades de depuración detrás de \texttt{NODE\_ENV === 'development'}.
+    \item \textbf{Funcionalidad parcial en sincronización con Drive:} El servicio \texttt{DriveSyncCheckerService} operaba como \emph{stub} y retornaba un estado optimista. \textbf{Mitigación:} priorización de la implementación real y bloqueo de la operación en producción mientras se cierra el hallazgo.
+    \item \textbf{Dependencia de servicios externos (Google Drive, Let's Encrypt):} Disponibilidad sujeta a terceros. \textbf{Mitigación:} manejo de reintentos con backoff exponencial, monitoreo de cuotas y persistencia de los certificados en un volumen Docker (\texttt{traefik\_certs}).
+\end{itemize}
+
+\subsection{Cambios de Alcance y su Impacto}
+
+Los cambios solicitados durante el desarrollo se canalizaron a través del Formulario de Gestión de Cambios (\hyperref[anexo:formulario_gestion_de_cambios]{Anexo 11}), evaluando en cada caso el impacto en alcance, cronograma y recursos. La metodología iterativa (Scrum) permitió absorber estos cambios en sprints siguientes sin comprometer la fecha de entrega general del proyecto.
+
+\subsection{Lecciones Aprendidas}
+
+\begin{itemize}
+    \item Mantener una \textbf{auditoría técnica continua} (no solo al cierre) detecta inconsistencias antes de que se conviertan en deuda crítica.
+    \item Las \textbf{verificaciones automatizadas} (linters, type-check, pruebas unitarias, cobertura) son indispensables en un monorepo donde un cambio puede impactar varias aplicaciones.
+    \item Documentar la \textbf{infraestructura como código} (\texttt{docker-compose}, scripts de despliegue) acelera la recuperación ante incidentes y la incorporación de nuevos integrantes al equipo.
+    \item La \textbf{comunicación frecuente con los clientes} (Lic. Chávez y Lic. Madrigal) permitió ajustar prioridades de forma temprana y evitar reprocesos.
+    \item Disociar lógica de almacenamiento (Google Drive) de lógica de negocio (MongoDB/Prisma) facilitó las pruebas y la evolución independiente de cada componente.
+\end{itemize}
+
+\section{Detalles Técnicos}
+
+\subsection{Arquitectura del Sistema}
+
+El sistema sigue una arquitectura de tres capas desplegada como microservicios contenedorizados detrás de un proxy reverso:
+
+\begin{itemize}
+    \item \textbf{Capa de presentación:} Aplicación Next.js (App Router) que consume la API REST mediante un cliente HTTP centralizado, con estado global gestionado por Zustand y caché de servidor con React Query.
+    \item \textbf{Capa de aplicación:} API NestJS modular, con módulos independientes por dominio (más de 50 módulos en \texttt{apps/backend/src/modules/}, agrupados por las áreas SINAES, Tiempos de Jornada, autenticación, parametrización y soporte).
+    \item \textbf{Capa de datos:} MongoDB accedido vía Prisma ORM con esquemas compartidos en el paquete \texttt{@una-gc/database}, complementado por Google Drive como almacén de objetos documentales.
+\end{itemize}
+
+El diagrama detallado de componentes está disponible en el \hyperref[anexo:diseno]{Anexo 18: Diseño}, junto con los diagramas específicos de cada módulo (\hyperref[anexo:anexo19]{Anexo 19} y \hyperref[anexo:anexo20]{Anexo 20}).
+
+\subsection{Tecnologías, Lenguajes y Frameworks Utilizados}
+
+\begin{itemize}
+    \item \textbf{Lenguajes:} TypeScript (frontend, backend y paquetes compartidos), JavaScript (scripts de soporte), SQL/MongoDB Query Language para consultas.
+    \item \textbf{Frontend:} Next.js 15.1.0, React 19.0.0, Tailwind CSS 3.4.16, shadcn/ui, Zustand 4.5.4, React Query.
+    \item \textbf{Backend:} NestJS 10.4.19, Prisma ORM 6.10.1, Passport.js, JWT, Zod 3.24.2, class-validator.
+    \item \textbf{Persistencia:} MongoDB.
+    \item \textbf{Integraciones externas:} Google Drive API (\texttt{googleapis}), Google OAuth2.
+    \item \textbf{Tooling:} pnpm workspaces, Turbo, ESLint, Prettier, Husky (hooks de git), Jest (pruebas unitarias y de integración), Docusaurus (documentación).
+    \item \textbf{Infraestructura:} Docker, Docker Compose, Traefik 2.11, Let's Encrypt, servidor Hetzner.
+\end{itemize}
+
+\subsection{Repositorio del Código Fuente y Control de Versiones}
+
+El código fuente se gestiona en un repositorio Git con flujo de trabajo basado en ramas por funcionalidad y revisiones por pares antes de fusión a la rama principal. Aspectos relevantes del control de versiones:
+
+\begin{itemize}
+    \item \textbf{Estructura:} monorepo con apps (\texttt{backend}, \texttt{frontend}, \texttt{docs}) y paquetes (\texttt{database}, \texttt{ui}, \texttt{eslint-config}, \texttt{typescript-config}).
+    \item \textbf{Hooks pre-commit:} configurados con Husky para ejecutar linters, formateadores y verificaciones de ortografía técnica (\texttt{cspell.config.yaml}).
+    \item \textbf{Convenciones de commits:} mensajes descriptivos en español/inglés vinculados a tareas e issues del cronograma de sprints.
+    \item \textbf{Equipo y contribuyentes:} Juan C. Camacho Solano, Fran Mora Cabezas, Ángel Stward Segura Méndez y Esteban Javier Granados Sibaja.
+\end{itemize}
+
+\subsection{Estándares de Codificación Aplicados}
+
+\begin{itemize}
+    \item \textbf{Linting:} configuración compartida en \texttt{@una-gc/eslint-config} para asegurar consistencia entre paquetes.
+    \item \textbf{Tipado estricto:} TypeScript con \texttt{strict} habilitado, tipos compartidos publicados en paquetes internos.
+    \item \textbf{Arquitectura:} principios SOLID en NestJS, separación módulo/servicio/controlador, repositorios para acceso a datos.
+    \item \textbf{Validación:} DTOs validados con \texttt{class-validator} en backend y esquemas Zod en frontend.
+    \item \textbf{Pruebas:} Jest con generación incremental de pruebas por fases (\texttt{generate\_tests\_phase*.sh}) y reportes de cobertura.
+    \item \textbf{Estilo:} Prettier para formateo automático y reglas de nomenclatura consistentes (kebab-case en archivos, camelCase en variables, PascalCase en componentes y clases).
+\end{itemize}
+
+\subsection{Requerimientos de Hardware y Software para la Ejecución}
+
+\textbf{Servidor de producción (mínimo recomendado):}
+\begin{itemize}
+    \item CPU: 2 vCPU.
+    \item Memoria RAM: 4 GB.
+    \item Almacenamiento: 40 GB SSD para sistema, imágenes Docker y volúmenes persistentes.
+    \item Sistema operativo: Linux con Docker Engine y Docker Compose v2.
+    \item Conectividad: IP pública con puertos 80 y 443 abiertos, registros DNS apuntando a los dominios del frontend y del backend.
+\end{itemize}
+
+\textbf{Estación de desarrollo:}
+\begin{itemize}
+    \item Node.js $\geq$ 18.x y pnpm $\geq$ 8.x.
+    \item Docker Desktop o equivalente para pruebas locales contenedorizadas.
+    \item Acceso a MongoDB local o a un cluster de desarrollo.
+\end{itemize}
+
+\textbf{Cliente final:} navegador moderno (Chrome, Firefox, Edge o Safari en sus versiones recientes) con JavaScript habilitado.
+
+\subsection{Seguridad: Autenticación, Autorización y Manejo de Datos Sensibles}
+
+\subsubsection{Autenticación}
+\begin{itemize}
+    \item Inicio de sesión mediante JWT firmado, gestionado con Passport.js dentro del módulo \texttt{auth} del backend.
+    \item Integración con Google OAuth2 para el flujo de autenticación federada, requerido también para autorizar el acceso a Google Drive en nombre del usuario.
+    \item Tokens almacenados de forma segura en el cliente y renovados según política definida en el backend.
+\end{itemize}
+
+\subsubsection{Autorización}
+\begin{itemize}
+    \item Modelo de roles diferenciados (administrador, coordinador, docente) implementado en los módulos \texttt{user-roles} y \texttt{user-permissions}.
+    \item \emph{Guards} y decoradores específicos de NestJS protegen los endpoints sensibles (\texttt{apps/backend/src/modules/auth/guards} y \texttt{decorators}).
+    \item Permisos verificados tanto en el backend (autoridad final) como en el frontend (para condicionar la interfaz).
+\end{itemize}
+
+\subsubsection{Manejo de Datos Sensibles}
+\begin{itemize}
+    \item \textbf{Cifrado en tránsito:} TLS terminado en Traefik con certificados Let's Encrypt y redirección forzada de HTTP a HTTPS.
+    \item \textbf{Cabeceras de seguridad:} configuradas en \texttt{traefik/headers.yml} (HSTS, anti-clickjacking, protección contra MIME-sniffing).
+    \item \textbf{Secretos:} variables de entorno gestionadas por archivos \texttt{.env} fuera del repositorio, con plantillas controladas.
+    \item \textbf{Credenciales de servicio:} cuenta de servicio Google con permisos mínimos sobre Drive, almacenada como archivo JSON fuera del bundle de la imagen.
+    \item \textbf{Auditoría:} registro centralizado de cambios en módulos clave (\texttt{sinaes-document-history}, \texttt{observations}, \texttt{project-logs}) para trazabilidad de acciones sensibles.
+    \item \textbf{Aislamiento de red:} contenedores en una red Docker dedicada (\texttt{gcalidad-network}) sin exposición directa, expuestos únicamente a través del proxy.
+\end{itemize}
+

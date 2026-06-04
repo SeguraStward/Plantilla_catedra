@@ -1,0 +1,45 @@
+% -------------------------------
+% Documento principal - Ingeniería en Sistemas
+% -------------------------------
+\documentclass[12pt, a4paper, oneside]{book}
+\input{include/configuracion}
+
+\begin{document}
+
+\input{elements/portada}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+% --- Capítulos (no se tocan) ---
+\include{chapters/ch1}   % Introducción
+\include{chapters/ch2}   % Antecedentes 
+\include{chapters/ch3}   % Descripción del proyecto
+\include{chapters/ch4}   % Planteamiento del problema 
+\include{chapters/ch5}   % Justificación e importancia
+\include{chapters/ch6}   % Objetivos
+\include{chapters/ch7}   % Metodología
+\include{chapters/ch8}   % Estándares
+\include{chapters/ch9}  % Costos
+\include{chapters/ch10}   % Desarrollo
+\include{chapters/ch11}  % Conclusiones
+\include{chapters/ch12}  % Recomendaciones
+
+% -------------------------------
+% Apéndices
+% -------------------------------
+\appendix
+\include{chapters/anexos} % <<--- TODO el contenido de anexos vive aquí
+
+% -------------------------------
+% Bibliografía
+% -------------------------------
+\nocite{*}
+\bibliographystyle{apalike}
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Referencias bibliográficas}
+\bibliography{bib/ref}
+
+\end{document}

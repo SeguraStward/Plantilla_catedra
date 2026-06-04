@@ -1,0 +1,33 @@
+
+\section{Diseño}
+Esta sección presenta el diseño de la solución propuesta para el **Sistema de Gestión Integral Universitario**, abarcando sus módulos de Gestión de Tiempos de Jornada y Gestión de Evidencias SINAES. Se incluyen las consideraciones arquitectónicas, el modelo de datos no relacional (Prisma), los scripts de respaldo de datos y un diccionario de datos detallado que define cada componente del sistema.
+
+\subsection{Arquitectura}
+El diseño arquitectónico del Sistema de Gestión Integral Universitario se basa en una arquitectura modular y orientada a microservicios donde sea aplicable, para asegurar escalabilidad y mantenibilidad.
+
+* **Frontend:** Desarrollado con **React JS + Next.js + TypeScript + Shaden UI**, garantizando una interfaz de usuario responsiva, intuitiva y accesible (WCAG 2.1 AA). Esta capa interactúa directamente con los backends y servicios de terceros.
+* **Backend (Módulo Tiempos de Jornada):** Implementado con **NestJS**, un framework robusto y escalable para la lógica de servidor. Este backend es el encargado de procesar las reglas de negocio complejas relacionadas con el cálculo y la gestión de tiempos de jornada.
+* **Base de Datos (Módulo Tiempos de Jornada):** Se utiliza **MongoDB**, una base de datos NoSQL flexible, ideal para manejar el esquema dinámico de mallas curriculares, asignaciones, proyectos y repitencias. La interacción se facilita a través de **Prisma ORM**.
+* **Almacenamiento de Evidencias (Módulo Evidencias SINAES):** Este módulo interactúa directamente con la **API de Google Drive** para la carga, clasificación y gestión de documentos, aprovechando la infraestructura existente de la UNA para almacenamiento en la nube. En esta fase inicial, no requiere un backend dedicado.
+* **Integración y Autenticación:** El sistema se integra con el sistema de Gestión de Calidad para la gestión de roles y utiliza autenticación basada en correo institucional. El control de acceso basado en roles (RBAC) y el cifrado AES-256 para datos sensibles son implementaciones clave para la seguridad.
+
+\subsection{Modelo de Datos (Prisma)}
+El modelo de datos, definido a través de Prisma ORM, constituye la estructura fundamental de la base de datos para el módulo de Gestión de Tiempos de Jornada y la representación de entidades clave para el módulo de Evidencias SINAES. Este diseño garantiza la integridad de la información y permite una gestión eficiente de los datos universitarios.
+
+El esquema completo del modelo de datos en Prisma, incluyendo las definiciones de modelos para entidades como `Curriculum`, `Course`, `WorkloadTime`, `EvidenceDocument`, `Dimension`, `Component`, `Criterion` y sus relaciones, se puede consultar en el \hyperref[anexo:modelo_relacional]{Anexo 13: Modelo No Relacional}. Este modelo ha sido diseñado para cumplir con los requerimientos funcionales y no funcionales de ambos módulos y optimizar las consultas específicas.
+
+\subsection{Scripts - Respaldo de Datos}
+Para garantizar la consistencia, disponibilidad y seguridad de los datos, se han desarrollado scripts de respaldo que permiten salvaguardar la información crítica del sistema. Estos scripts realizan copias de seguridad periódicas de la base de datos MongoDB (para Tiempos de Jornada) y se consideran planes para la gestión de versiones y copias de seguridad de documentos en Google Drive (para Evidencias SINAES). Están configurados para ejecutarse automáticamente según la política de respaldo definida por la UNA.
+
+El detalle completo de los scripts de respaldo se puede consultar en el \hyperref[anexo:script]{Anexo 13: Script de la base de datos}. Los scripts han sido desarrollados para trabajar con MongoDB y están documentados para facilitar su mantenimiento y actualización por el personal de TI de la UNA.
+
+\subsection{Diccionario de datos}
+El diccionario de datos proporciona una descripción detallada de cada modelo (o colección en MongoDB) y campo, incluyendo tipos de datos, restricciones y relaciones entre entidades según lo definido en el esquema de Prisma. Esta documentación es esencial para entender la estructura de la base de datos del Sistema de Gestión Integral Universitario y facilitar su mantenimiento futuro.
+
+El diccionario completo se encuentra en el \hyperref[anexo:diccionario_de_Datos]{Anexo 14: Diccionario de Datos} e incluye:
+\begin{itemize}
+    \item Descripción de modelos y campos, tipos de datos y restricciones.
+    \item Relaciones entre modelos (ej. `@relation` en Prisma).
+    \item Detalles sobre cómo se gestionan los metadatos de evidencias en Google Drive.
+\end{itemize}
+Esta documentación será de gran utilidad tanto para los desarrolladores actuales como para futuros mantenedores del sistema, asegurando la claridad y la estandarización de la información.

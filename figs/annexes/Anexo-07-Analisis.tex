@@ -1,0 +1,392 @@
+\section{Análisis}
+\subsection{Análisis Preliminar}
+
+\subsection{Situación actual}
+La Universidad Nacional (UNA) enfrenta desafíos significativos en la gestión de evidencias para los procesos de acreditación SINAES. Actualmente, estos procesos se basan en una gestión manual de documentos utilizando Google Drive, lo que ha generado las siguientes problemáticas:
+\begin{itemize}
+    \item \textbf{Duplicidad de documentos}: Se estima una duplicidad en el 35\% de los documentos almacenados.
+    \item \textbf{Tiempo de clasificación manual}: Los coordinadores invierten un promedio de 2 horas diarias en la clasificación manual de evidencias.
+    \item \textbf{Falta de trazabilidad}: Más de 500 documentos anuales carecen de metadatos estructurados, lo que dificulta su trazabilidad y correlación con los criterios de calidad.
+    \item \textbf{Riesgo de incumplimiento de estándares SINAES}: Las ineficiencias en la gestión actual podrían llevar a retrasos críticos y errores en la verificación del cumplimiento, poniendo en riesgo la acreditación de carreras clave.
+\end{itemize}
+
+\subsection{Necesidades principales}
+Para abordar las problemáticas identificadas, el sistema propuesto busca satisfacer las siguientes necesidades clave:
+\begin{itemize}
+    \item \textbf{Automatizar la categorización jerárquica}: El sistema debe permitir la asignación de documentos a dimensiones, componentes y criterios de SINAES.
+    \item \textbf{Reducir el tiempo de gestión}: Se busca una reducción del 70\% en el tiempo dedicado a la clasificación manual de documentos.
+    \item \textbf{Garantizar la sincronización con Google Drive}: El sistema debe mantener una sincronización eficiente y bidireccional con el repositorio institucional en Google Drive, siendo este el único medio de almacenamiento de evidencias.
+    \item \textbf{Generar reportes PDF para auditorías}: Se requiere la capacidad de generar reportes automatizados de cumplimiento por carrera y facultad.
+\end{itemize}
+
+\subsection{Actores del sistema}
+Los actores clave que interactuarán con el sistema y sus roles principales son:
+\begin{itemize}
+    \item \textbf{Gestores de Calidad}: Responsables de cargar, clasificar y verificar las evidencias, así como de la generación de reportes.
+    \item \textbf{Decanos y Directores de Carrera}: Consultarán el estado de cumplimiento de criterios y necesitarán acceso rápido a evidencias específicas.
+    \item \textbf{Evaluadores SINAES}: Revisarán las evidencias durante los procesos de auditoría externa y requerirán trazabilidad documental confiable.
+    \item \textbf{Equipo Técnico}: Encargado del desarrollo, implementación y mantenimiento del sistema.
+\end{itemize}
+
+\subsection{Factibilidad técnica}
+El análisis de factibilidad técnica ha determinado la viabilidad del proyecto integral "Gestión de Calidad". Específicamente, para el módulo de gestión de evidencias, este se desarrollará como un frontend que interactuará directamente con la API de Google Drive, sin una capa de backend dedicada en esta fase. Sin embargo, el nuevo módulo de gestión de tiempos de jornada sí contará con un backend robusto y una base de datos propia.
+\begin{itemize}
+    \item \textbf{Infraestructura de la UNA}: Los servidores de la Universidad Nacional, con 4 núcleos, 16GB de RAM y 500GB SSD, cumplen con los requisitos mínimos para el despliegue de los frontends, la gestión de tráfico concurrente y la operación del backend de tiempos de jornada (NestJS, MongoDB).
+    \item \textbf{Tecnologías}: Las tecnologías seleccionadas (React, Next.js, TypeScript, Shadcn UI para el frontend; NestJS, Prisma y MongoDB para el backend de tiempos de jornada) están alineadas con la visión del proyecto "Gestión de Calidad" y son adecuadas para sus respectivas funcionalidades y manipulaciones de API/base de datos.
+    \item \textbf{Seguridad}: La implementación de JWT para autenticación y un control de acceso basado en roles se considera factible y es un componente crítico para ambos módulos del sistema.
+\end{itemize}
+
+\subsection{Desafíos identificados}
+A pesar de la factibilidad, se han identificado algunos desafíos clave para el proyecto integral:
+\begin{itemize}
+    \item \textbf{Integración bidireccional con Google Drive (Módulo Evidencias)}: Asegurar una sincronización robusta y eficiente con Google Drive sin una base de datos intermedia dedicada en este módulo puede presentar complejidades.
+    \item \textbf{Integración de datos entre módulos}: Aunque son módulos distintos, la necesidad de que ambos coexistan bajo "Gestión de Calidad" podría requerir futuras integraciones de datos que no están en el alcance inicial.
+    \item \textbf{Capacitación de usuarios}: Existe el riesgo de resistencia al cambio por parte de usuarios con baja adopción tecnológica en ambos frentes (evidencias y tiempos de jornada), lo que requerirá una capacitación efectiva.
+    \item \textbf{Validación constante de estándares SINAES y normativas universitarias}: La posible actualización de los criterios de acreditación por parte de SINAES o las normativas internas de tiempos de jornada durante el desarrollo o la operación del sistema podría requerir ajustes en los respectivos módulos.
+\end{itemize}
+
+% La siguiente newpage se mueve para asegurar que la sección de Gestión de Riesgos empiece en una página nueva si es necesario,
+% pero no forzar una página en blanco si ya estamos al principio de una.
+\newpage
+\section{Identificación de Riesgos}
+La identificación proactiva de riesgos es fundamental para la gestión eficaz del proyecto. A continuación, se detallan los riesgos potenciales que podrían afectar el desarrollo e implementación del \textbf{Sistema de Gestión Integral Universitario}, que incluye los módulos de gestión de evidencias para la acreditación SINAES y gestión de tiempos de jornada, en la UNA. Cada riesgo se clasifica por categoría y se acompaña de una breve descripción.
+
+\begin{longtable}{|l|l|p{0.25\textwidth}|p{0.5\textwidth}|} % Ajustados anchos de columna
+    \caption{Identificación de Riesgos del Proyecto} \label{cuadro:identificacion_riesgos} \\
+    \hline
+    \textbf{ID} & \textbf{Categoría} & \textbf{Riesgo} & \textbf{Descripción} \\
+    \hline
+    \endfirsthead
+    \multicolumn{4}{c}%
+    {{\bfseries \tablename\ \thetable{} -- continuación de la página anterior}} \\
+    \hline
+    \textbf{ID} & \textbf{Categoría} & \textbf{Riesgo} & \textbf{Descripción} \\
+    \hline
+    \endhead
+    \hline \multicolumn{4}{|r|}{{Continúa en la página siguiente}} \\ \hline
+    \endfoot
+    \hline \endlastfoot
+    R01 & Técnico & Fallos en sincronización con Google Drive & Errores en la implementación de la API de Google Drive o cambios inesperados en la misma, lo que podría llevar a duplicidad o pérdida de datos de evidencia. \\
+    \hline
+    R02 & Operacional & Resistencia al cambio por usuarios finales & Baja adopción tecnológica o percepción de complejidad en el uso del nuevo sistema por parte de los usuarios clave (gestores de calidad, directores de carrera, profesores), afectando la carga de datos de ambos módulos. \\
+    \hline
+    R03 & Legal/Normativo & Cambios en estándares SINAES o Normativa UNA durante desarrollo & Actualizaciones imprevistas en los criterios de acreditación por parte de SINAES o en las normativas universitarias de asignación de tiempos de jornada, requiriendo rediseño de módulos. \\
+    \hline
+    R04 & Seguridad & Vulnerabilidades de seguridad en el sistema & Configuración incorrecta de permisos de acceso o fallas en el control de acceso basado en roles, exponiendo información sensible (ej. datos de profesores, mallas curriculares, o documentos de evidencia). \\
+    \hline
+    R05 & Proyecto & Retrasos en el cronograma & Dificultades no anticipadas en el desarrollo del frontend complejo, integración con APIs (Google Drive, sistema de gestión de calidad), o gestión de dependencias del proyecto "Gestión de Calidad". \\
+    \hline
+    R06 & Técnico & Rendimiento insuficiente del sistema & El sistema podría no manejar grandes volúmenes de datos históricos (tiempos de jornada) o interacciones simultáneas (evidencias en Google Drive) de manera eficiente. \\
+    \hline
+    R07 & Calidad & Errores en la clasificación de metadatos/datos de entrada & Fallas en la lógica de etiquetado o en la asignación de categorías jerárquicas (dimensión-componente-criterio) a los documentos de evidencia, o errores en el registro de horas contacto/normativas de tiempo de jornada. \\
+    \hline
+    R08 & Integración/Técnico & Problemas con APIs de terceros & Limitaciones inesperadas de la API de Google Drive (ej. cuotas, latencia) o cambios en su comportamiento, o problemas de integración con el sistema de Gestión de Calidad para la autenticación de usuarios. \\
+    \hline
+    R09 & Recurso & Incapacidad temporal del equipo de desarrollo & Uno o más miembros del equipo de desarrollo podrían enfrentar problemas de salud o personales, afectando el avance de cualquiera de los módulos. \\
+    \hline
+    R10 & Comunicación & Comunicación deficiente con stakeholders & Falta de claridad o coordinación en las reuniones con el Product Owner (Comité de Calidad UNA, representantes de facultades/carreras) o el profesor intermediario, afectando la comprensión de requisitos de ambos módulos. \\
+    \hline
+\end{longtable}
+
+% --- 2. Matriz de Probabilidad por Impacto ---
+\section{Matriz de Probabilidad por Impacto}
+Para evaluar la severidad de cada riesgo, se utiliza una matriz de probabilidad por impacto.
+
+\subsection{Criterios de Evaluación}
+\textbf{Probabilidad:} 
+\begin{itemize}
+    \item 1: Muy baja (Ocurrencia menor al 10\%)
+    \item 2: Baja (Ocurrencia entre 10\% - 30\%)
+    \item 3: Media (Ocurrencia entre 30\%-50\%)
+    \item 4: Alta (Ocurrencia entre 50\%-70\%) 
+    \item 5: Muy alta (Ocurrencia mayor al 70\%) 
+\end{itemize}
+\textbf{Impacto:} 
+\begin{itemize}
+    \item 1: Muy bajo (Consecuencias mínimas)
+    \item 2: Bajo (Consecuencias menores)
+    \item 3: Medio (Consecuencias notables)
+    \item 4: Alto (Consecuencias graves)
+    \item 5: Muy alto (Consecuencias críticas)
+\end{itemize}
+El Nivel de Riesgo se calcula multiplicando la Probabilidad por el Impacto (Nivel de Riesgo = Probabilidad x Impacto). Las acciones requeridas se definen según el nivel de riesgo: 
+\begin{itemize}
+    \item Bajo (1-6): Monitorear
+    \item Medio (7-14): Controlar
+    \item Alto (15-25): Mitigar activamente
+\end{itemize}
+
+\subsection{Matriz de Evaluación}
+\begin{longtable}{|l|p{0.3\textwidth}|c|c|c|l|} % Ajustados anchos de columna para que quepan
+    \caption{Matriz de Evaluación de Riesgos} \label{cuadro:matriz_evaluacion} \\
+    \hline
+    \textbf{ID} & \textbf{Riesgo} & \textbf{P} & \textbf{I} & \textbf{PxI} & \textbf{Nivel} \\
+    \hline
+    \endfirsthead
+    \multicolumn{6}{c}%
+    {{\bfseries \tablename\ \thetable{} -- continuación de la página anterior}} \\
+    \hline
+    \textbf{ID} & \textbf{Riesgo} & \textbf{P} & \textbf{I} & \textbf{PxI} & \textbf{Nivel} \\
+    \hline
+    \endhead
+    \hline \multicolumn{6}{|r|}{{Continúa en la página siguiente}} \\ \hline
+    \endfoot
+    \hline \endlastfoot
+    R01 & Fallos en sincronización con Google Drive & 4 & 4 & 16 & \textcolor{red!70}{Alto} \\ % red!70 para un rojo más visible
+    \hline
+    R02 & Resistencia al cambio por usuarios finales & 3 & 5 & 15 & \textcolor{red!70}{Alto} \\
+    \hline
+    R03 & Cambios en estándares SINAES o Normativa UNA durante desarrollo & 2 & 5 & 10 & \textcolor{orange!80}{Medio} \\ % orange!80 para un naranja más visible
+    \hline
+    R04 & Vulnerabilidades de seguridad en el sistema & 3 & 4 & 12 & \textcolor{orange!80}{Medio} \\
+    \hline
+    R05 & Retrasos en el cronograma & 4 & 4 & 16 & \textcolor{red!70}{Alto} \\
+    \hline
+    R06 & Rendimiento insuficiente del sistema & 2 & 3 & 6 & Bajo \\
+    \hline
+    R07 & Errores en la clasificación de metadatos/datos de entrada & 3 & 4 & 12 & \textcolor{orange!80}{Medio} \\
+    \hline
+    R08 & Problemas con APIs de terceros & 3 & 3 & 9 & \textcolor{orange!80}{Medio} \\
+    \hline
+    R09 & Incapacidad temporal del equipo de desarrollo & 2 & 4 & 8 & \textcolor{orange!80}{Medio} \\
+    \hline
+    R10 & Comunicación deficiente con stakeholders & 3 & 3 & 9 & \textcolor{orange!80}{Medio} \\
+    \hline
+\end{longtable}
+
+\subsection{Representación Visual}
+La siguiente gráfica muestra la distribución de los riesgos según su probabilidad e impacto.
+
+\begin{center}
+    % Descomenta y reemplaza con la ruta de tu imagen de la matriz de riesgos si la tienes
+    % \includegraphics[width=0.8\textwidth]{matriz_riesgos_visual.png} 
+    % Figura 1: Representación Visual de la Matriz de Riesgos
+    \begin{verbatim}
+IMPACTO
+5 |         R02
+4 |   R03 R09 R04   R01
+3 |   R05 R07 R08 R10
+2 |   R06
+1 |
+  +-------------------------
+    1   2   3   4   5  PROBABILIDAD
+    \end{verbatim}
+    Figura 1: Representación Visual de la Matriz de Riesgos
+\end{center}
+
+% --- 3. Plan de Tratamiento de Riesgos ---
+\section{Plan de Tratamiento de Riesgos}
+Se establecen planes de acción específicos para mitigar, prevenir o monitorear los riesgos identificados, con especial énfasis en aquellos clasificados como "Alto".
+
+\begin{longtable}{|l|p{0.18\textwidth}|l|l|p{0.45\textwidth}|p{0.1\textwidth}|} % Ajustados anchos de columna para que quepan
+    \caption{Plan de Acciones para Riesgos} \label{cuadro:plan_acciones_riesgos} \\
+    \hline
+    \textbf{ID} & \textbf{Riesgo} & \textbf{Nivel} & \textbf{Estrategia} & \textbf{Plan de Acción} & \textbf{Responsable} \\
+    \hline
+    \endfirsthead
+    \multicolumn{6}{c}%
+    {{\bfseries \tablename\ \thetable{} -- continuación de la página anterior}} \\
+    \hline
+    \textbf{ID} & \textbf{Riesgo} & \textbf{Nivel} & \textbf{Estrategia} & \textbf{Plan de Acción} & \textbf{Responsable} \\
+    \hline
+    \endhead
+    \hline \multicolumn{6}{|r|}{{Continúa en la página siguiente}} \\ \hline
+    \endfoot
+    \hline \endlastfoot
+    R01 & Fallos en sincronización con Google Drive & Alto & Mitigar & Implementar rutinas robustas de manejo de errores y reintentos para la API de Google Drive. Desarrollar un módulo de conciliación en el frontend que detecte y notifique inconsistencias. Realizar pruebas de integración exhaustivas con la API de Google Drive al inicio de cada sprint. & Equipo de desarrollo \\
+    \hline
+    R02 & Resistencia al cambio por usuarios finales & Alto & Prevenir & Diseñar una interfaz de usuario altamente intuitiva y con una curva de aprendizaje mínima (¡<2 horas). Implementar un programa de capacitación práctico y gamificado, con certificación para los usuarios clave. Identificar "embajadores tecnológicos" dentro de cada facultad para promover la adopción y ofrecer soporte. & Equipo de desarrollo y PO \\
+    \hline
+    R05 & Retrasos en el cronograma & Alto & Mitigar & Aplicar estrictamente la metodología Scrum, con sprints bien definidos y objetivos claros. Monitorear la velocidad del sprint y usar Burndown Charts semanalmente para detectar desviaciones. Limitar el "work in progress" (WIP) y comunicar proactivamente cualquier impedimento al profesor y al Product Owner. Realizar reuniones diarias (Daily Stand-ups) para identificar y resolver bloqueos rápidamente. & Equipo de desarrollo \\
+    \hline
+    R03 & Cambios en estándares SINAES o Normativa UNA durante desarrollo & Medio & Prevenir & Implementar un diseño modular para la lógica de criterios SINAES (ej. patrón Strategy) y para la normativa de tiempos de jornada que facilite actualizaciones. Programar reuniones bimensuales con la oficina de calidad de la UNA y representantes de SINAES para anticipar cambios normativos. Mantener un registro detallado de las versiones de los estándares de SINAES y normativas UNA, y su impacto en el sistema. & Profesor y Equipo de des. \\
+    \hline
+    R04 & Vulnerabilidades de seguridad en el sistema & Medio & Mitigar & Implementar rigurosamente el control de acceso basado en roles (RBAC) con autenticación de dos factores para administradores. Asegurar que el cifrado AES-256 se aplique a los documentos sensibles antes de su envío a Google Drive. Realizar auditorías de seguridad periódicas y análisis estático de código (ej. con SonarQube) en cada sprint. & Equipo de desarrollo \\
+    \hline
+    R06 & Rendimiento insuficiente del sistema & Bajo & Monitorear & Realizar pruebas de rendimiento con conjuntos de datos realistas (simulando 50+ usuarios concurrentes y grandes volúmenes de datos históricos). Identificar posibles cuellos de botella en la renderización del frontend o en las llamadas a la API de Google Drive y la base de datos. Optimizar el código frontend y las operaciones críticas para minimizar la latencia. & Equipo de desarrollo \\
+    \hline
+    R07 & Errores en la clasificación de metadatos/datos de entrada & Medio & Mitigar & Implementar validaciones de entrada robustas en el frontend para asegurar la correcta asignación de metadatos de evidencia y datos de configuración de tiempos de jornada. Desarrollar vistas de pre-visualización para que los usuarios puedan verificar la clasificación antes de la carga final. Realizar pruebas de aceptación con usuarios finales para validar la lógica de categorización y cálculo. & Equipo de desarrollo \\
+    \hline
+    R08 & Problemas con APIs de terceros & Medio & Monitorear & Familiarizarse exhaustivamente con la documentación oficial de la API de Google Drive y otras APIs de terceros (ej. sistema de Gestión de Calidad), incluyendo límites de cuota y buenas prácticas. Implementar un sistema de logging detallado para monitorear las interacciones con las APIs y detectar errores o limitaciones. Diseñar la aplicación para manejar respuestas de error de las APIs de forma graciosa y notificar al usuario. & Equipo de desarrollo \\
+    \hline
+    R09 & Incapacidad temporal del equipo de desarrollo & Medio & Mitigar & Fomentar el conocimiento compartido de todas las funcionalidades y módulos entre los miembros del equipo. Mantener una documentación de código clara y actualizada (README.md, comentarios en el código). Identificar recursos de respaldo dentro de la UNA o de la comunidad académica en caso de emergencia. & Equipo de desarrollo \\
+    \hline
+    R10 & Comunicación deficiente con stakeholders & Medio & Prevenir & Establecer un calendario de reuniones fijas (ej. semanales con agenda definida) con el Product Owner (Comité de Calidad UNA, representantes de facultades/carreras) y el profesor. Documentar formalmente todas las decisiones, acuerdos y cambios en los requisitos después de cada reunión. Mantener un canal de comunicación directo y ágil (ej. chat grupal) para consultas rápidas. Establecer tiempos de respuesta máximos para consultas críticas por parte de los stakeholders. & Profesor y Equipo de des. \\
+    \hline
+\end{longtable}
+
+% --- 4. Seguimiento y Control ---
+\section{Seguimiento y Control}
+Para asegurar una adecuada gestión de los riesgos identificados, se implementará un proceso continuo de seguimiento y control.
+\begin{enumerate}
+    \item \textbf{Revisión periódica:} El equipo realizará una revisión exhaustiva de la matriz de riesgos al inicio de cada sprint, ajustando las probabilidades e impactos según la evolución del proyecto.
+    \item \textbf{Reunión de riesgos:} Se dedicará un espacio específico en las reuniones semanales del equipo para analizar el estado de los riesgos activos.
+    \item \textbf{Actualización de planes:} Los planes de tratamiento se ajustarán dinámicamente según la evolución de los riesgos, los resultados de las acciones implementadas y las lecciones aprendidas.
+    \item \textbf{Documentación de incidentes:} Cualquier materialización de un riesgo (incidente) será documentada detalladamente para el aprendizaje continuo del equipo y la mejora de futuros proyectos.
+    \item \textbf{Comunicación de riesgos:} Los riesgos de alto nivel serán comunicados proactivamente al Product Owner (Comité de Calidad UNA, representantes de facultades/carreras) y al profesor intermediario, asegurando la transparencia y la toma de decisiones informada.
+\end{enumerate}
+Este plan de gestión de riesgos se concibe como un documento vivo y evolutivo, que se actualizará y adaptará a lo largo de todo el ciclo de vida del proyecto para reflejar la situación actual y las lecciones aprendidas.
+
+
+\section{Estudio de Factibilidad}
+
+\subsection{Factibilidad Operativa}
+La organización posee una capacidad operativa favorable para la adopción de los nuevos sistemas (Gestión de Evidencias y Gestión de Tiempos de Jornada), a pesar de algunas áreas de mejora identificadas.
+\subsubsection{Viabilidad en entorno operativo}
+\begin{itemize}
+    \item El 100\% de los gestores de calidad y el personal administrativo relevante disponen de al menos 1 hora diaria para participar en sesiones de capacitación inicial.
+    \item La infraestructura de TI de la UNA es compatible con el despliegue inmediato de ambos módulos del sistema.
+\end{itemize}
+
+\subsubsection{Impacto organizacional}
+\begin{itemize}
+    \item Se proyecta una reducción significativa de horas/mes en las tareas de gestión documental manual (140 horas/mes para evidencias) y en la planificación manual de tiempos de jornada.
+    \item Los sistemas contribuirán a la unificación y estandarización de procesos clave de gestión en la UNA.
+\end{itemize}
+
+\subsubsection{Conocimiento de desarrolladores}
+\begin{itemize}
+    \item El equipo de desarrollo cuenta con experiencia previa en React, Next.js y TypeScript (los 3 miembros), así como en la interacción con APIs y bases de datos (especialmente para el módulo de tiempos de jornada con NestJS, Prisma y MongoDB).
+\end{itemize}
+
+\subsubsection{Mantenimiento}
+\begin{itemize}
+    \item Se ha establecido un plan de soporte y mantenimiento básico por 6 meses post-implementación para ambos módulos, asignando personal para incidencias menores y actualizaciones.
+\end{itemize}
+
+\subsection{Factibilidad Técnica}
+La universidad cuenta con los recursos tecnológicos necesarios para implementar y operar ambos módulos del sistema sin requerir nuevas adquisiciones sustanciales.
+\subsubsection{Infraestructura tecnológica}
+\begin{itemize}
+    \item \textbf{Frontend}: Ambos sistemas se alojarán en un CDN institucional de la UNA, garantizando un acceso rápido y escalable.
+    \item \textbf{Backend (Módulo Tiempos de Jornada)}: Se utilizará NestJS en servidores UNA (Ubuntu 22.04), aprovechando los recursos existentes.
+    \item \textbf{Base de Datos (Módulo Tiempos de Jornada)}: Se utilizará MongoDB, con la posibilidad de emplear MongoDB Atlas para alta disponibilidad si se requiere.
+    \item \textbf{Recursos existentes}: Los servidores actuales de la UNA (4 núcleos, 16GB RAM, 500GB SSD con Ubuntu 22.04 / Windows) son adecuados para el despliegue del frontend, la gestión de tráfico concurrente y la operación del backend y base de datos de tiempos de jornada.
+\end{itemize}
+
+\subsubsection{Escalabilidad}
+\begin{itemize}
+    \item El diseño de ambos módulos, al interactuar con Google Drive (evidencias) y tener un backend escalable con MongoDB (tiempos de jornada), está concebido para manejar un volumen creciente de datos y usuarios (ej. 1,000+ documentos simultáneos, 10,000+ evidencias categorizadas, y cientos de asignaciones/proyectos).
+\end{itemize}
+
+\subsection{Factibilidad Económica}
+El proyecto integral es financieramente viable al no requerir inversión directa significativa, utilizando recursos existentes.
+\subsubsection{Costos de desarrollo}
+\begin{itemize}
+    \item \textbf{Personal}: El desarrollo será realizado por 3 estudiantes, lo que representa un costo de \$0 por 576 horas de trabajo.
+    \item \textbf{Licencias}: El uso de tecnologías open-source (React, Next.js, TypeScript, Shadcn UI, NestJS, MongoDB, Prisma) implica un costo de \$0 en licencias.
+    \item \textbf{Hardware}: Se utilizará la infraestructura existente de la UNA, resultando en un costo de \$0 en hardware.
+\end{itemize}
+
+\subsubsection{Beneficios}
+\begin{itemize}
+    \item \textbf{Tangibles}: Se estima un ahorro significativo de ₡58 millones anuales al optimizar la gestión manual de evidencias, además de ahorros adicionales por la automatización de la gestión de tiempos de jornada, liberando recursos para otras tareas institucionales.
+    \item \textbf{Intangibles}: La mejora en la eficiencia y el cumplimiento de estándares SINAES, junto con una planificación de recursos humanos más precisa, fortalecerá la posición institucional de la UNA en rankings académicos y procesos de acreditación.
+\end{itemize}
+
+\newpage
+
+\section{Ciclo de Vida}
+El proyecto integral "Gestión de Calidad" se desarrollará utilizando la metodología Scrum, con una serie de criterios de transición definidos para cada fase que aplicarán a ambos módulos.
+\begin{table}[H] % Cambiado a [H]
+    \centering
+    \begin{tabular}{|c|p{0.5\textwidth}|}
+        \hline
+        \textbf{Transición} & \textbf{Criterio} \\
+        \hline
+        Planificación $\to$ Sprint 1 & Product Backlog priorizado y arquitectura del frontend/backend (para módulos aplicables) validada. \\
+        \hline
+        Entre sprints & Demo funcional del incremento anterior aprobada por el Product Owner (Comité de Calidad UNA / Administración). \\
+        \hline
+        Desarrollo $\to$ Implementación & Pruebas de carga exitosas (soporte para 500+ documentos / alta concurrencia) y revisión de calidad de código completada para el módulo correspondiente. \\
+        \hline
+    \end{tabular}
+    \caption{Criterios de Transición Scrum}
+\end{table}
+
+\section{WBS}
+La siguiente tabla presenta un fragmento de la Estructura de Desglose del Trabajo (WBS) para el proyecto integral, detallando los niveles clave y las responsabilidades asignadas, aplicables a ambos módulos.
+\begin{table}[H] % Cambiado a [H]
+    \centering
+    \begin{tabular}{|c|l|l|}
+        \hline
+        \textbf{Nivel} & \textbf{Elemento} & \textbf{Responsable} \\
+        \hline
+        2.1 & Requerimientos & Equipo \\
+        2.3 & Desarrollo & Equipo \\
+        3.1 & Despliegue & Equipo \\
+        \hline
+    \end{tabular}
+    \caption{Estructura WBS (Fragmento)}
+\end{table}
+
+\section{Cronograma General}
+El cronograma del proyecto integral "Gestión de Calidad" se organiza en Sprints de 2 semanas, con objetivos claros y entregables definidos para cada fase. El proyecto comenzará en **julio de 2025** y se extenderá hasta el **primer semestre de 2026**, reflejando una progresión lógica para el desarrollo de ambos módulos de forma concurrente o secuencial, según la prioridad.
+
+\begin{longtable}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{6cm}|>{\raggedright\arraybackslash}p{3cm}|}
+    \caption{Cronograma Detallado por Sprints - Metodología Divide y Vencerás} \label{tab:cronograma_sprints} \\
+    \hline
+    \textbf{Sprint} & \textbf{Fechas} & \textbf{Requerimiento Funcional} & \textbf{Tiempo Estimado} \\
+    \hline
+    \endfirsthead
+
+    \multicolumn{4}{c}%
+    {\tablename\ \thetable\ -- \textit{Continuación de la página anterior}} \\
+    \hline
+    \textbf{Sprint} & \textbf{Fechas} & \textbf{Requerimiento Funcional} & \textbf{Tiempo Estimado} \\
+    \hline
+    \endhead
+
+    \hline \multicolumn{4}{|c|}{\textbf{HACIA AVANCE \#1 - ANÁLISIS Y DISEÑO (21 AGO)}} \\
+    \hline
+    Sprint 1 & 28 Jul - 04 Ago & \textbf{RF-01: Mantenimiento de Dimensiones SINAES} - Análisis y diseño del CRUD para dimensiones & 7 días \\
+    \hline
+    Sprint 2 & 05 - 11 Ago & \textbf{RF-02: Mantenimiento de Componentes SINAES} - Análisis y diseño del CRUD para componentes & 7 días \\
+    \hline
+    Sprint 3 & 12 - 18 Ago & \textbf{RF-03: Mantenimiento de Criterios SINAES} - Análisis y diseño del CRUD para criterios & 7 días \\
+    \hline
+    Sprint 4 & 19 - 21 Ago & \textbf{RF-04: Mantenimiento de Evidencias SINAES} - Análisis y diseño del CRUD para evidencias & 3 días \\
+    \hline
+    Presentación & 21 Ago 2025 & \multicolumn{2}{>{\raggedright\arraybackslash}p{9cm}|}{\textbf{DEFENSA AVANCE \#1}} \\
+    \hline
+    \multicolumn{4}{|c|}{\textbf{HACIA AVANCE \#2 - MÓDULO EVIDENCIAS (18 SEP)}} \\
+    \hline
+    Sprint 5 & 22 - 28 Ago & \textbf{RF-05: Carga de documentos probatorios} - Implementar carga múltiple según mockups por carrera & 7 días \\
+    \hline
+    Sprint 6 & 29 Ago - 04 Sep & \textbf{RF-06: Asociación múltiple criterios-documento} - Vincular documentos con múltiples criterios & 7 días \\
+    \hline
+    Sprint 7 & 05 - 11 Sep & \textbf{RF-07: Consulta con filtros avanzados} - Filtros por criterio y evidencia & 7 días \\
+    \hline
+    Sprint 8 & 12 - 18 Sep & \textbf{RF-08: Mantenimiento tipos documento} - CRUD tipos con consecutivo automático & 7 días \\
+    \hline
+    Presentación & 18 Sep 2025 & \multicolumn{2}{>{\raggedright\arraybackslash}p{9cm}|}{\textbf{DEFENSA AVANCE \#2}} \\
+    \hline
+    \multicolumn{4}{|c|}{\textbf{HACIA AVANCE \#3 - MÓDULO TIEMPOS JORNADA (16 OCT)}} \\
+    \hline
+    Sprint 9 & 19 - 25 Sep & \textbf{RF-09: Gestión de carreras y mallas} - CRUD carreras y mallas curriculares & 7 días \\
+    \hline
+    Sprint 10 & 26 Sep - 02 Oct & \textbf{RF-10: Cálculo automático tiempos jornada} - Motor de cálculo por curso y agregados & 7 días \\
+    \hline
+    Sprint 11 & 03 - 09 Oct & \textbf{RF-11: Asignación cursos y proyectos} - Asignar cursos/proyectos a profesores & 7 días \\
+    \hline
+    Sprint 12 & 10 - 16 Oct & \textbf{RF-12: Gestión proyectos institucionales} - Registro proyectos y consumo tiempo & 7 días \\
+    \hline
+    Presentación & 16 Oct 2025 & \multicolumn{2}{>{\raggedright\arraybackslash}p{9cm}|}{\textbf{DEFENSA AVANCE \#3}} \\
+    \hline
+    \multicolumn{4}{|c|}{\textbf{HACIA AVANCE \#4 - SISTEMA COMPLETO (13 NOV)}} \\
+    \hline
+    Sprint 13 & 17 - 23 Oct & \textbf{RF-13: Registro cursos repitencia} - Control de repitencias y tiempos & 7 días \\
+    \hline
+    Sprint 14 & 24 - 30 Oct & \textbf{RF-14: Tiempos proveedores externos} - Registro y clasificación tiempos externos & 7 días \\
+    \hline
+    Sprint 15 & 31 Oct - 06 Nov & \textbf{RF-15: Generación reportes PDF} - Reportes cumplimiento evidencias & 7 días \\
+    \hline
+    Sprint 16 & 07 - 13 Nov & \textbf{RF-16: Informes detallados Excel} - Reportes matrícula, aprobación, comportamiento & 7 días \\
+    \hline
+    Presentación & 13 Nov 2025 & \multicolumn{2}{>{\raggedright\arraybackslash}p{9cm}|}{\textbf{DEFENSA FINAL}} \\
+    \hline
+    \multicolumn{4}{|c|}{\textbf{REQUERIMIENTO TRANSVERSAL}} \\
+    \hline
+    Continuo & Jul - Nov & \textbf{RF-17: Historial de cambios} - Visualización de cambios por documento (durante todo el desarrollo) & Transversal \\
+    \hline
+\end{longtable}

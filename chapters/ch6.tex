@@ -1,0 +1,26 @@
+\chapter{Objetivos}
+
+Los objetivos definen los propósitos del trabajo y los límites de lo que se desea alcanzar con el desarrollo del proyecto. Se estructuran en un objetivo general y varios objetivos específicos, redactados en infinitivo y con criterios de verificación.
+
+\section{Objetivo general}
+Desarrollar un sistema web modular que automatice la gestión de evidencias SINAES y la administración de tiempos de jornada universitaria, mejorando la trazabilidad, la transparencia y la eficiencia operativa de la UNA mediante entregas incrementales alineadas al cronograma de sprints.
+
+\section{Objetivos específicos}
+
+\subsection*{Módulo Evidencias SINAES}
+\begin{enumerate}
+  \item Diseñar la interfaz jerárquica (dimensión $\rightarrow$ componente $\rightarrow$ criterio) para asociar evidencias SINAES, validada con al menos 3 casos de uso completos.
+  \item Implementar el cargador de evidencias con metadatos obligatorios (tipo, responsable, fecha, carrera, período) y etiquetas; registrar al menos 20 evidencias de prueba.
+  \item Generar reportes en PDF sobre estado de cumplimiento por carrera y facultad, incluyendo filtros por período y exportación descargable.
+  \item Definir y aplicar un modelo de auditoría (altas, bajas, cambios, descargas) que conserve un historial mínimo de 30 días.
+  \item Reducir el tiempo promedio de clasificación documental a \(\leq 30\) minutos por usuario mediante formularios guiados y metadatos estandarizados (prueba con 3 usuarios).
+\end{enumerate}
+
+\subsection*{Módulo Tiempos de Jornada}
+\begin{enumerate}\setcounter{enumi}{5}
+  \item Modelar el dominio académico de tiempos de jornada (carreras, mallas, cursos, grupos, docentes, reglas) en una base NoSQL documentada.
+  \item Implementar los CRUD de cargas docentes y proyectos institucionales con validaciones de reglas de negocio.
+  \item Incorporar el cálculo automático de repitencia y tiempos externos (fijos e inciertos), mostrando el detalle del cómputo por docente.
+  \item Desarrollar exportes a Excel por ciclo, carrera y sede, con comparativos históricos (al menos dos períodos).
+  \item Publicar un prototipo web funcional (frontend + API) con autenticación, documentación Swagger y evidencia de pruebas básicas (Smoke/Happy path).
+\end{enumerate}

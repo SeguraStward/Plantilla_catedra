@@ -1,0 +1,61 @@
+\chapter{Descripción del Proyecto}
+
+El proyecto se enmarca dentro del macro-proyecto denominado ``Gestión de Calidad'', cuyo propósito es apoyar a la Universidad Nacional en la optimización de procesos administrativos y académicos mediante la digitalización y automatización de la información clave. Este esfuerzo responde a la necesidad institucional de contar con sistemas más confiables, eficientes y seguros para la gestión de procesos vinculados con la acreditación académica y la distribución de recursos humanos y académicos.
+
+De forma particular, se desarrollan dos módulos principales: 
+
+\section*{Sistema de Gestión de Evidencias para Acreditación SINAES}
+
+El Sistema de Gestión de Evidencias tiene como objetivo atender las debilidades actuales en la administración de documentos requeridos por los procesos de acreditación. Actualmente, la gestión se realiza mediante carpetas en Google Drive, lo que genera duplicidad, pérdida de tiempo en la búsqueda, falta de metadatos estandarizados y riesgo de inconsistencias en los informes.
+
+El módulo propuesto introduce una estructura jerárquica de navegación (dimensión $\to$ componente $\to$ criterio) alineada con los lineamientos del SINAES, garantizando que cada evidencia se ubique en el criterio que le corresponde. Asimismo, cada documento se enriquece con metadatos normalizados (tipo, responsable, fecha, carrera, periodo), lo que permite búsquedas rápidas y generación de reportes confiables.
+
+\subsection*{Funcionalidades principales}
+\begin{itemize}
+  \item Registro de evidencias con validación de formatos (PDF, DOCX, XLSX, PNG).
+  \item Asignación de metadatos obligatorios y opcionales según el criterio SINAES.
+  \item Búsqueda avanzada y filtrado por carrera, criterio, estado de cumplimiento o fecha.
+  \item Generación de reportes en PDF con tablas comparativas por carrera o facultad.
+  \item Registro de auditoría de accesos y modificaciones.
+\end{itemize}
+
+\subsection*{Beneficios esperados}
+\begin{itemize}
+  \item Reducción del tiempo de clasificación manual en al menos un 70\%.
+  \item Mejora en la trazabilidad documental y en la preparación de auditorías.
+  \item Aseguramiento de la integridad y centralización de los documentos institucionales.
+  \item Disminución del riesgo de pérdida de acreditaciones por falta de evidencias confiables.
+\end{itemize}
+
+\subsection*{Alcances y limitaciones}
+En esta primera fase, el sistema se concentrará en la interfaz de usuario y en la integración con Google Drive como repositorio oficial. No se incluye aún un backend propio para la gestión de evidencias, dado que el objetivo es entregar un prototipo funcional que demuestre la factibilidad y utilidad del modelo planteado.
+
+\section*{Sistema de Gestión de Tiempos de Jornada Universitarios}
+
+El Sistema de Tiempos de Jornada atiende la necesidad de distribuir de manera justa y transparente la carga docente y los recursos destinados a proyectos institucionales. Actualmente, la administración se realiza con hojas de cálculo que dificultan la consolidación de información, generan errores de cálculo y limitan la capacidad de generar reportes confiables.
+
+Este módulo permitirá calcular automáticamente las horas de jornada según las mallas curriculares, los incrementos por repitencia y los tiempos otorgados por convenios externos. Además, se registrarán proyectos institucionales con consumo de tiempo docente, lo que aportará una visión integral de la utilización de este recurso.
+
+\subsection*{Funcionalidades principales}
+\begin{itemize}
+  \item CRUD de catálogos (carreras, cursos, mallas curriculares, docentes y grupos).
+  \item Registro y actualización de cargas docentes por periodo académico.
+  \item Gestión de proyectos institucionales con asignación de horas.
+  \item Reglas de cálculo para contemplar repitencia y tiempos externos (fijos e inciertos).
+  \item Exportes de reportes en Excel por ciclo, carrera, sede y comparativos históricos.
+\end{itemize}
+
+\subsection*{Beneficios esperados}
+\begin{itemize}
+  \item Transparencia en la asignación de carga académica entre docentes.
+  \item Optimización en el uso del presupuesto destinado a tiempos de jornada.
+  \item Reducción de errores de cálculo por el uso de herramientas automatizadas.
+  \item Base de datos centralizada que facilita la generación de reportes estratégicos.
+\end{itemize}
+
+\subsection*{Alcances y limitaciones}
+El sistema se desarrollará con una base de datos no relacional en MongoDB, administrada a través de un backend en NestJS con Prisma ORM. En la presente etapa no se contempla la integración con otros sistemas de la universidad, aunque la arquitectura se diseñará modular para permitir futuras expansiones.
+
+\bigskip
+
+\noindent En conjunto, ambos módulos fortalecen la capacidad institucional de planificación estratégica, garantizando mayor eficiencia, transparencia y confiabilidad en la gestión académica y administrativa de la UNA. Además, constituyen un primer paso hacia la construcción de un ecosistema digital integral para la gestión de la calidad en la universidad.

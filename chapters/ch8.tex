@@ -1,0 +1,35 @@
+\chapter{Estándares}
+
+Con el fin de garantizar la calidad, mantenibilidad, seguridad y coherencia del macro-proyecto “Gestión de Calidad” (módulo de Evidencias SINAES y módulo de Tiempos de Jornada), se definen los siguientes estándares técnicos y metodológicos.
+
+\section{Estándares de Documentación}
+\begin{itemize}
+    \item Uso de archivos \textbf{README.md} en cada repositorio con instrucciones claras de instalación, despliegue y contribución.
+    \item Convención de \textbf{Conventional Commits} para los mensajes de confirmación en Git, asegurando trazabilidad de cambios.
+    \item Documentación de APIs mediante \textbf{Swagger/OpenAPI 3.0}, facilitando la comprensión y consumo de los servicios.
+    \item Manuales de usuario y anexos técnicos en formato \LaTeX, siguiendo la estructura institucional.
+\end{itemize}
+
+\section{Estándares de Programación}
+\begin{itemize}
+    \item \textbf{Frontend:} uso de TypeScript con ESLint (Airbnb Style Guide) y Prettier para asegurar consistencia en estilo de código.
+    \item \textbf{Backend:} aplicación de arquitectura hexagonal y principios de Domain-Driven Design (DDD) en el módulo de Tiempos de Jornada.
+    \item \textbf{Control de versiones:} adopción de \textbf{Git Flow} para la gestión de ramas (main, develop, feature, release, hotfix).
+    \item \textbf{Pruebas unitarias:} Jest como framework estándar para validación automática de componentes y servicios.
+\end{itemize}
+
+\section{Estándares de Base de Datos}
+\begin{itemize}
+    \item \textbf{MongoDB} como base de datos NoSQL para el módulo de Tiempos de Jornada, seleccionada por su flexibilidad y escalabilidad.
+    \item Uso de \textbf{Prisma ORM} como estándar de interacción entre backend y base de datos, asegurando tipado seguro y reducción de errores.
+    \item \textbf{Google Drive API} como repositorio oficial de evidencias del módulo SINAES, con metadatos estandarizados para cada documento.
+    \item Respaldos periódicos automatizados, siguiendo políticas institucionales de integridad y disponibilidad.
+\end{itemize}
+
+\section{Estándares de Interfaz}
+\begin{itemize}
+    \item \textbf{Shadcn UI} como librería de componentes estándar en el frontend, garantizando consistencia visual y accesibilidad.
+    \item Cumplimiento de las pautas \textbf{WCAG 2.1 nivel AA}, asegurando accesibilidad para todos los usuarios.
+    \item Diseño \textbf{responsive-first}, validado en dispositivos móviles, tabletas y escritorios.
+    \item Uso de patrones de navegación jerárquica para facilitar el acceso a dimensiones, componentes y criterios en el módulo SINAES.
+\end{itemize}
