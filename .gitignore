@@ -1,0 +1,101 @@
+## Archivos generados por LaTeX
+## (basado en la plantilla estándar de gitignore para LaTeX)
+
+# Auxiliares de compilación
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+# Salida intermedia
+*.dvi
+*.xdv
+*-converted-to.*
+
+# PDF de salida principal del documento
+# (descomenta si NO quieres versionar el PDF compilado)
+TFM.pdf
+
+# Bibliografía (BibTeX / biber)
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+# Índices y glosarios
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.ist
+*.idx
+*.ilg
+*.ind
+*.lzo
+*.lzs
+*.sln
+*.slo
+*.sls
+
+# Hyperref
+*.brf
+
+# Listings / minted
+*.lol
+_minted*
+*.pyg
+
+# Algoritmos / nomenclatura
+*.nlg
+*.nlo
+*.nls
+
+# beamer
+*.nav
+*.pre
+*.snm
+*.vrb
+
+# todonotes
+*.tdo
+
+# xindy
+*.xdy
+
+# Otros auxiliares comunes
+*.atfi
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+# latexmk
+*.fdb_latexmk
+*.fls
+
+# Archivos temporales / de respaldo
+*.bak
+*.backup
+*~
+*.tmp
+*.swp
+
+## Sistema operativo / editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
