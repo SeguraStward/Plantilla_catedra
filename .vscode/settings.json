@@ -1,0 +1,106 @@
+{
+    // =========================================================================
+    // LaTeX Workshop — Compilación vía Docker (contenedor de la carpeta padre)
+    // =========================================================================
+    // Este proyecto NO tiene LaTeX instalado localmente: se compila dentro del
+    // contenedor definido en ../../docker-compose.yml. La carpeta padre
+    // (Latex_Projects) se monta como /workspace dentro del contenedor.
+    //
+    // IMPORTANTE: este proyecto usa fontspec -> el motor por defecto es XeLaTeX.
+    // =========================================================================
+
+    // --- Recetas (la primera es la que se usa por defecto al guardar) ---
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "xelatex (Docker)",
+            "tools": ["docker-xelatex"]
+        },
+        {
+            "name": "lualatex (Docker)",
+            "tools": ["docker-lualatex"]
+        },
+        {
+            "name": "pdflatex (Docker)",
+            "tools": ["docker-pdflatex"]
+        }
+    ],
+
+    // --- Herramientas: comandos Docker reales ---
+    // %WORKSPACE_FOLDER% = carpeta de este proyecto.
+    // El docker-compose.yml está dos niveles arriba (Latex_Projects/).
+    // El working dir dentro del contenedor es /workspace/projects/<este proyecto>.
+    "latex-workshop.latex.tools": [
+        {
+            "name": "docker-xelatex",
+            "command": "docker",
+            "args": [
+                "compose",
+                "-f", "%WORKSPACE_FOLDER%/../../docker-compose.yml",
+                "run", "--rm",
+                "-w", "/workspace/projects/Plantilla_Cátedra___Ingeniería_Sistemas",
+                "latex",
+                "latexmk -synctex=1 -interaction=nonstopmode -file-line-error -xelatex %DOCFILE%.tex"
+            ],
+            "env": {}
+        },
+        {
+            "name": "docker-lualatex",
+            "command": "docker",
+            "args": [
+                "compose",
+                "-f", "%WORKSPACE_FOLDER%/../../docker-compose.yml",
+                "run", "--rm",
+                "-w", "/workspace/projects/Plantilla_Cátedra___Ingeniería_Sistemas",
+                "latex",
+                "latexmk -synctex=1 -interaction=nonstopmode -file-line-error -lualatex %DOCFILE%.tex"
+            ],
+            "env": {}
+        },
+        {
+            "name": "docker-pdflatex",
+            "command": "docker",
+            "args": [
+                "compose",
+                "-f", "%WORKSPACE_FOLDER%/../../docker-compose.yml",
+                "run", "--rm",
+                "-w", "/workspace/projects/Plantilla_Cátedra___Ingeniería_Sistemas",
+                "latex",
+                "latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf %DOCFILE%.tex"
+            ],
+            "env": {}
+        }
+    ],
+
+    // --- Compilación ---
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux", "*.bbl", "*.blg", "*.idx", "*.ind", "*.lof",
+        "*.lot", "*.out", "*.toc", "*.acn", "*.acr", "*.alg",
+        "*.glg", "*.glo", "*.gls", "*.fls", "*.log", "*.fdb_latexmk",
+        "*.snm", "*.nav", "*.run.xml", "*.bcf", "*.xdv"
+    ],
+
+    // --- Visor PDF y SyncTeX ---
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.synctex.afterBuild.enabled": true,
+
+    // --- Intellisense ---
+    "latex-workshop.intellisense.package.enabled": true,
+
+    // --- Editor ---
+    "[latex]": {
+        "editor.formatOnSave": false,
+        "editor.wordWrap": "on",
+        "editor.tabSize": 2
+    },
+    "[bibtex]": {
+        "editor.tabSize": 2
+    },
+    "files.associations": {
+        "*.tex": "latex",
+        "*.bib": "bibtex",
+        "*.cls": "latex",
+        "*.sty": "latex"
+    }
+}

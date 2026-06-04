@@ -97,5 +97,9 @@ _minted*
 ## Sistema operativo / editores
 .DS_Store
 Thumbs.db
-.vscode/
 .idea/
+
+# VS Code: ignorar todo salvo la config compartida del proyecto
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
